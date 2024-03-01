@@ -3,6 +3,8 @@ vim 9.x 버전대 기준
 * [Help](help)
 * [Pattern](#pattern)
 * [Movement](#movement)
+* [Write](#write)
+* [Copy, Paste](#copy,-paste)
 * [Edits](#edits)
 * [Undo, Redo](#undo,-redo)
 
@@ -56,7 +58,33 @@ mac os의 option + 방향키처럼 단어를 기준으로 이동할 수 있음
     * e : 다음 단어
     * ge : 이전 단어
 
+## Write
+
+i(insert) : 커서 기준 insert 모드 
+
+a(append) : 커서를 character로 옮기고 insert 모드
+
+I : 커서를 라인의 맨 앞으로 옮기고 insert 모드
+
+A : 커서를 라인의 맨 뒤로 옮기고 insert 모드
+
+o : 커서 기준 한 줄 내리고 insert 모드
+
+O : 커서 기준 한 줄 올리고 insert 모드
+
+## Copy, Paste
+
+y(yank) : 복사 - vim에서는 register라고 함
+
+p(put, paste) : 붙여넣기
+
+d(delete) : 잘라내기 
+
 ## Edit
+
+:w(write) : 저장
+
+:q(quit) : 나가기
 
 ZZ, :wq, :wqa : 파일 저장 후 나가기
 
@@ -64,9 +92,9 @@ ZQ, :q! : 저장하지 않고 나가기
 
 ## Undo, Redo
 
-u : 되돌리기
+u : undo
 
-Ctrl + r : 앞돌리기
+Ctrl + r : redo
 
 
 

@@ -1,6 +1,14 @@
 vim 9.x 버전대 기준
 
-## Basic modes (7가지)
+## Configuration
+
+vim 설정 파일 : ~/.vimrc
+
+직접 만들어서 설정해야됨
+
+## Modes
+
+### Basic modes (7가지)
 
 vim은 mode-based workflow를 가지는 텍스트 에디터임(modal text editor)
 
@@ -10,7 +18,7 @@ vim은 mode-based workflow를 가지는 텍스트 에디터임(modal text editor
 
 vim은 각 모드에 따라 사용자 입력과 처리를 진행함
 
-### Normal mode (keystroke : ESC key)
+#### Normal mode (keystroke : ESC key)
 
 vim으로 파일을 열면 동작하는 기본 모드임(Command mode라고도 함)
 
@@ -18,7 +26,7 @@ vim으로 파일을 열면 동작하는 기본 모드임(Command mode라고도 �
 
 다른 모드에서 ESC를 누르면 Normal mode로 변경됨
 
-### Insert mode (keystroke : i)
+#### Insert mode (keystroke : i)
 
 Normal mode에서 i를 누르면 Insert mode로 변경됨
 
@@ -26,7 +34,7 @@ Normal mode에서 i를 누르면 Insert mode로 변경됨
 
 텍스트를 입력하면 파일에 작성됨
 
-### Visual mode (keystroke : v)
+#### Visual mode (keystroke : v)
 
 Normal mode에서 v를 누르면 visual mode로 변경됨
 
@@ -36,13 +44,13 @@ visual mode는 라인을 기준으로 텍스트를 선택하고 visual block mod
 
 visual block mode : ctrl + v
 
-### Select mode (keystroke : gh)
+#### Select mode (keystroke : gh)
 
 Visual mode와 비슷하게 텍스트를 선택함
 
 키를 입력하면 선택된 텍스트들이 삭제되면서 Insert mode로 변경됨
 
-### Command line mode(Cmdline mode)
+#### Command line mode(Cmdline mode)
 
 Ex 명령(keystroke : :)
 
@@ -54,11 +62,11 @@ filter 명령
 
 Normal mode에서 매핑되는 키 입력을 누르면 된다
 
-### Ex mode (keystroke : :)
+#### Ex mode (keystroke : :)
 
 Cmdline 모드와 유사하지만 명령을 입력한 후 Ex mode를 유지함
 
-### Terminal-Job mode
+#### Terminal-Job mode
 
-## Additional modes (7가지)
+### Additional modes (7가지)
 
