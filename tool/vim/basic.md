@@ -1,10 +1,27 @@
 vim 9.x 버전대 기준
 
+* [Configuration](#configuration)
+* [Modes](#modes)
+* [Plugins](#plugins)
+* [Key Mapping](#key-mapping)
+* [Tabs](#tabs)
+* [Fording](#folding)
+* [Formatting, Linting](#formatting,-linting)
+* [Language Server](#language-server)
+* [With Git](#with-git)
+* [Vim Scripts](#vim-scripts)
+
+" Configuration  ========================================================= {{{
+
 ## Configuration
 
 vim 설정 파일 : ~/.vimrc
 
 직접 만들어서 설정해야됨
+
+}}}
+
+" Modes ========================================================= {{{
 
 ## Modes
 
@@ -70,3 +87,143 @@ Cmdline 모드와 유사하지만 명령을 입력한 후 Ex mode를 유지함
 
 ### Additional modes (7가지)
 
+}}}
+
+" Plugins  ========================================================= {{{
+
+## Plugins
+
+### Plugin manager - vim-plug 
+
+[vim-plug github](https://github.com/junegunn/vim-plug)
+
+#### installation
+
+```
+curl -fLo  ~/.vim/autoload/plug.vim --create-dirs \
+     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+```
+
+#### Usage
+
+1. .vimrc 파일에 이용할 플러그인 명시
+
+* `call plug#begin([PLUGIN_DIR])` 
+    1. Linux, macOs :  ~/.vim/plugged로 지정
+    2. Windows : ~/vimfiles/plugged
+* `Plug 설치할 플러그인 주소`
+    1. 축약 : `Plug 'junegunn/fzf'`
+    2. git url : `Plug 'https://github.com/junegunn/fzf'`
+    3. on-demand : `Plug 'preservim/nerdtree', { 'on' : 'NERDTreeToggle'}'`
+    4. specific branch : `Plug 'rdnetto/YCM-Generator', { 'branch' : 'stable }`
+* `call plug#end()`
+
+```
+plug #begin()
+lug 'junegunn/vim-easy-align'
+
+Plug 'https://github.com/junegunn/vim-github-dashboard.git'
+
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+
+" On-demand loading
+Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+
+" Using a non-default branch
+Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
+
+plug#end()
+```
+
+2. .vimrc reload, `:PlugInstall` 실행
+
+3. plugin 설치 후 수행해야 할 작업이 있을 경우
+
+do 옵션으로 post-update hooks 수행
+
+post-update hook은 해당 플러그인 디렉토리 안에서 실행됨
+
+```
+Plug 'Shougo/vimproc.vim', { 'do': 'make' }
+Plug 'ycm-core/YouCompleteMe', { 'do': './install.py' }
+```
+
+plugin 설치 후 post-update hooks 수행 
+
+```
+Plug `'fatih/vim-go', { 'do': ':GoInstallBinaries' }`
+```
+
+do 옵션의 값이 ":" 로 시작하면 vim command로 인식함
+
+```
+Plug `'junegunn/fzf', { 'do': { -> fzf#install() } }`
+```
+람다 표현식을 vim 함수 호출
+
+
+[vim-plug 옵션](https://github.com/junegunn/vim-plug?tab=readme-ov-file#plug-options)
+
+
+#### Plugin Installation Step
+
+1. `git clone` or `git fetch` from origin 
+2. checkout branch, tag, commit
+3. if the plugin was updated (or installed for the first time)
+    1. update submodules
+    2. execute post-update hooks
+
+`:PluginInstall!`, `:PluginUpdate!`는 무조건 위 3단계를 수행함
+
+}}}
+
+" Key Mapping  ========================================================= {{{
+
+## Key Mapping
+
+}}}
+
+" Tabs  ========================================================= {{{
+
+
+## Tabs
+
+
+}}}
+
+" Fording  ========================================================= {{{
+
+## Fording
+
+}}}
+
+" Formatting, Linting  ========================================================= {{{
+
+## Formatting, Linting
+
+}}}
+
+" Code Completion  ========================================================= {{{
+
+## Code Completion
+
+}}}
+
+" Language Server  ========================================================= {{{
+
+## Language Server 
+
+}}}
+
+" With Git  ========================================================= {{{
+
+## With Git
+
+}}}
+
+" Vim Scripts  ========================================================= {{{
+
+## Vim Scripts
+
+}}}
