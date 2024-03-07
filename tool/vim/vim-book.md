@@ -1,4 +1,12 @@
+**참고**
+
 vim 9.x 버전대 기준
+
+[vim docs](https://vimhelp.org/)
+
+[vim-book](https://www.truth.sk/vim/vimbook-OPL.pdf)
+
+[learn vimscript the hard way](https://learnvimscriptthehardway.stevelosh.com/)
 
 * [Configuration](#configuration)
 * [Modes](#modes)
@@ -12,12 +20,14 @@ vim 9.x 버전대 기준
 * [Edits](#edits)
 * [Multiple Files](#multiple-files)
 * [Windows](#Windows)
+* [Buffers](#buffers)
+* [Visual Mode](#visual mode)
 * [Undo, Redo](#undo,-redo)
 * [Repeat](#repeat)
 * [Joining, Replacing, Changing](#joining,-replacing,-changing)
 * [Macro](#macro)
 * [Digraphs](#digraphs)
-* [Clipboards](#clipboards)
+* [Command for Programming](#command-for-programming)
 * [Plugins](#plugins)
 * [Key Mapping](#key-mapping)
 * [Tabs](#tabs)
@@ -96,7 +106,11 @@ Normal mode에서 v를 누르면 visual mode로 변경됨
 
 visual mode는 라인을 기준으로 텍스트를 선택하고 visual block mode는 블록 단위로 텍스트를 선택함
 
-visual block mode : ctrl + v
+v : visual 모드
+
+V : visual line 모드
+
+CTRL + v : visual block 모드
 
 #### Select mode (keystroke : gh)
 
@@ -255,10 +269,10 @@ m + a-z 또는 0-9 : 커서가 있는 곳에 mark 설정, mark로 설정한 라�
 :marks : 설정한 marks 표시
 
 ` + [ ] ' " : 미리 지정된 mark
-* [, ] : 마지막으로 변경하거나 복사한 텍스트의 시작과 끝
 * ^ : 현재 세션에서 마지막으로 놓인 커서 위치
 * . : 마지막으로 변경된 라인 위치
 * " : 파일을 닫았을 때 마지막 커서 위치 mark 
+* [, ] : 파일을 닫았을 때 마지막으로 변경하거나 복사한 텍스트의 시작과 끝
 
 ### Marks + Yanks
 
@@ -325,6 +339,110 @@ vi file1 file2 file3 : 여러 개 파일 열기
 count + CTRL + ^ : 지정한 번호의 파일 열기
 
 ## Windows
+
+윈도우 관련 단축키는 모두 CTRL + w로 시작함(window key : CTRL + W)
+
+대소문자 구분 필요(동작이 다름)
+
+### Window Open, Close
+
+:split, window key + s(split) : 현재 파일 새 윈도우 열기
+
+:sview : 현재 파일 read-only 모드로 새 윈도우 열기
+
+:new, window key + n(new) : 새로운 파일 새 윈도우 열기 
+
+:sp(split) file : 다른 파일 열기
+
+:sp +/command file : 다른 파일 열기(명령 적용)
+
+:number split file : 다른 파일 열기(새 윈도우 사이즈 조절)
+
+window key + c, q : 윈도우 닫기
+
+### WIndow Movement
+
+window key + H,J,K,L : 방향키 방향으로 윈도우 이동
+
+### Cursor Movement
+
+window key + h,j,k,l : 방향키 방향의 윈도우로 커서 이동
+
+window key + w : 다음 윈도우로 커서 이동 
+
+### Chainging Window Size
+
+window key + + : 윈도우 크기 늘리기
+
+window key + - : 윈도우 크기 줄이기
+
+window key + = : 모든 윈도우 크기 통일
+
+window key + _ : 현재 윈도우 최대 크기
+
+## Buffers
+
+Buffer는 편집하고 있는 파일의 복사본임
+
+vim editor로 파일을 열면 메모리에 내용이 로드됨(파일마다 고유 버퍼 id를 가짐, 1:1 관계)
+
+버퍼 변경을 마치면 버퍼의 내용(content)이 파일에 작성됨(marks, setting, 등 파일에 관련된 내용도 포함)
+
+### Screen, Window, Buffer
+
+screen : vim이 실행되는 터미널 전체 화면
+
+window : screen 내에서 분할된 편집 화면(window당 하나의 버퍼를 보여줄 수 있음)
+
+buffer : 메모리에 로드된 파일 내용
+
+### Buffer State
+
+buffer의 3가지 상태
+* Active   : 현재 윈도우에 표시된 파일 (스크린에 윈도우가 있으면 버퍼가 있는 상태임)
+* Hidden, InActive   : 버퍼가 메모리에 로드되어 있지만 윈도우에 표시되지 않는 상태
+    * hidden 상태인 경우 파일을 변경하면 메모리에 임시 저장해두고, 다른 buffer로 스위칭할 수 있음
+    * set hidden 설정 필요
+
+buffer 상태 표시
+* a : active buffer
+* - : inactive buffer
+* h : hidden buffer
+* % : current window
+* # : alternative buffer(현재 윈도우에서 마지막으로 수정한 파일)
+* + : modified buffer
+* = : read-only buffer
+* x : read error buffer
+
+### Selecting Buffer
+
+:buffer number : 버퍼 번호로 선택
+
+:b(buffer) file : 파일 이름으로 선택
+
+:sb file, number : 새로운 윈도우로 열기
+
+:bn, bN : 다음, 이전 버퍼 선택 
+
+### Control Buffer
+
+:buffers, :ls, :files : 버퍼 리스트 보기
+
+:bdelete file : 특정 버퍼 삭제
+
+:badd file : 특정 버퍼 추가
+
+## Visual Mode
+
+Visual, Line, Block 동일
+
+텍스트 선택 + >, < : 들여쓰기(shift width)
+
+shitfwidth 설정 값 만큼 공백 이동(set shitfwidth=4)
+
+텍스트 선택 + = : 들여쓰기 통일
+
+텍스트 선택 + K : 선택한 텍스트에 대해 man command 적용
 
 ## Undo, Redo
 
@@ -416,9 +534,33 @@ stdlib.h
 
 매핑 문자는 :digraphs로 확인
 
+## Command for Programming
 
-## Clipbaords
+### Syntax Coloring
 
+:syntax on : 문법 coloring
+
+### File Type
+
+vim은 파일 확장자에 따라 파일 타입을 결정함
+
+.java : java 파일
+
+.c, .h : c 파일
+
+:set filetype=c : 다른 확장자를 가진 파일을 c 파일 타입으로 설정
+
+### Shifting
+
+>>, << : 라인 들여쓰기(normal mode에서 동작)
+
+### Auto Indentation
+
+set cident : C 스타일 프로그램(c, c++, java 등)을 작성할 때 표준 C 스타일로 자동 들여쓰기 적용({}을 기준으로 적용)
+
+set smartindent :
+
+set autoindent : 
 
 
 " Plugins  ========================================================= {{{
