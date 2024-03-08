@@ -28,6 +28,7 @@ vim 9.x 버전대 기준
 * [Macro](#macro)
 * [Digraphs](#digraphs)
 * [Command for Programming](#command-for-programming)
+* [Mapping](#mapping)
 * [Plugins](#plugins)
 * [Key Mapping](#key-mapping)
 * [Tabs](#tabs)
@@ -143,6 +144,8 @@ Cmdline 모드와 유사하지만 명령을 입력한 후 Ex mode를 유지함
 ## Help
 
 :help <query>, :h <help> : 도움말 보기
+
+텍스트 선택 + K : 해당 단어에 man 명령 적용
 
 ## Searching
 
@@ -550,18 +553,59 @@ vim은 파일 확장자에 따라 파일 타입을 결정함
 
 :set filetype=c : 다른 확장자를 가진 파일을 c 파일 타입으로 설정
 
+### Auto Indentation
+
+set cident : C 스타일 프로그램(c, c++, java 등)을 작성할 때 표준 C 스타일로 자동 들여쓰기 적용
+
+set smartindent : { } 를 기준으로 들여쓰기 적용, 주석 문자를 만나면 들여쓰기 유지
+
+set autoindent : 현재 줄의 들여쓰기를 다음 줄에도 적용
+
+텍스트 선택 + = + motion : 상황에 맞게 들여쓰기 적용
+
 ### Shifting
 
 >>, << : 라인 들여쓰기(normal mode에서 동작)
 
-### Auto Indentation
+>, < + i(inner) + { : {} 내부 텍스트 블록 들여쓰기
 
-set cident : C 스타일 프로그램(c, c++, java 등)을 작성할 때 표준 C 스타일로 자동 들여쓰기 적용({}을 기준으로 적용)
+### Locating
 
-set smartindent :
+gd, gD : 변수 정의 탐색
 
-set autoindent : 
+### Abbreviations
 
+:ab or iab or abbreviate + 약어 + 자동완성 문구 : 자동완성 약어 지정
+
+:ab : 약어 목록 표시
+
+:unab + 약어 : 약어 해제
+
+### Exmaple Abbreviate
+
+:ab sout System.out.println();
+
+## Mapping
+
+특정 키, 커맨드를 작업(task), 명령 수행을 하도록 매핑하는 기능
+
+{mode}{attribute}map {key} {command} : 키 매핑 구조
+
+### Mapping Modes
+
+nore 뜻 : No-Recursive 약자로 재귀적으로 매핑하지 않겠다는 의미임(vim에서 키 매핑을 지정하면 중복되는 키 매핑도 수행함)
+
+nnoremap : normal 모드
+
+inoremap : insert 모드
+
+vnoremap : visual 모드
+
+### Example Key Binding
+
+nnoremap bootRun :!cd %:p:h; while [[ ! -f build.gradle || -f pom.xml ]]; do cd ..; done; if [ -f build.gradle]; then ./gradlew bootRun; else mvn spring-boot:run; fi<CR> : normal 모드에서 bootRun 입력 시 해당 스프링 애플리케이션 실행
+
+inoremap <C-s> <ESC>:w<CR> : insert 모드에서 CTRL + S 입력 시 저장
 
 " Plugins  ========================================================= {{{
 
@@ -649,12 +693,6 @@ Plug `'junegunn/fzf', { 'do': { -> fzf#install() } }`
     2. execute post-update hooks
 
 `:PluginInstall!`, `:PluginUpdate!`는 무조건 위 3단계를 수행함
-
-}}}
-
-" Key Mapping  ========================================================= {{{
-
-## Key Mapping
 
 }}}
 
