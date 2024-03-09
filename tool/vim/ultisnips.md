@@ -1,4 +1,7 @@
 [Ultisnips](#ultisnips)
+[fzf](#fzf)
+[ALE](#ale)
+[NerdTree](#nerdtree)
 
 # Ultisnips
 
