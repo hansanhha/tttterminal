@@ -21,7 +21,7 @@ vim 9.x 버전대 기준
 * [Multiple Files](#multiple-files)
 * [Windows](#Windows)
 * [Buffers](#buffers)
-* [Visual Mode](#visual mode)
+* [Visual Mode](#visual-mode)
 * [Undo, Redo](#undo,-redo)
 * [Repeat](#repeat)
 * [Joining, Replacing, Changing](#joining,-replacing,-changing)
@@ -37,6 +37,7 @@ vim 9.x 버전대 기준
 * [Language Server](#language-server)
 * [With Git](#with-git)
 * [Vim Scripts](#vim-scripts)
+
 " Configuration  ========================================================= {{{
 
 ## Configuration
@@ -44,6 +45,10 @@ vim 9.x 버전대 기준
 vim 설정 파일 : ~/.vimrc
 
 직접 만들어서 설정해야됨
+
+:set : vim 파일에 적용된 설정 값 표시
+
+:set {option}? : 특정 설정 값이 적용됐는지 확인
 
 ### Highlighting
 
