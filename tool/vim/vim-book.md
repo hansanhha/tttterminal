@@ -21,6 +21,7 @@ vim 9.x 버전대 기준
 * [Multiple Files](#multiple-files)
 * [Windows](#Windows)
 * [Buffers](#buffers)
+* [Tabs](#tabs)
 * [Visual Mode](#visual-mode)
 * [Undo, Redo](#undo,-redo)
 * [Repeat](#repeat)
@@ -31,7 +32,6 @@ vim 9.x 버전대 기준
 * [Mapping](#mapping)
 * [Plugins](#plugins)
 * [Key Mapping](#key-mapping)
-* [Tabs](#tabs)
 * [Fording](#folding)
 * [Formatting, Linting](#formatting,-linting)
 * [Language Server](#language-server)
@@ -368,6 +368,8 @@ count + CTRL + ^ : 지정한 번호의 파일 열기
 
 window key + c, q : 윈도우 닫기
 
+window key + v : 새로운 vertical split window 생성 
+
 ### WIndow Movement
 
 window key + H,J,K,L : 방향키 방향으로 윈도우 이동
@@ -439,6 +441,29 @@ buffer 상태 표시
 :bdelete file : 특정 버퍼 삭제
 
 :badd file : 특정 버퍼 추가
+
+## Tabs
+
+Vim은 버퍼를 통해 파일의 내용을 저장함
+
+다른 텍스트 에디터들은 Tab을 닫으면 모두 사라지는 것과 달리 Vim은 Tab을 닫아도 버퍼가 내용을 보관하고 있음
+
+Tab은 하나 이상의 Window를 가질 수 있음
+
+### Tab Open, Close
+
+vim -p file1 file2 file3 : 여러 탭으로 파일 열기
+:tabnew file : 새로운 Tab에 새로운 파일 열기
+:tabclose : 현재 탭 닫기
+
+### Tab Movement
+
+gt : 다음 탭 이동
+gT : 이전 탭 이동
+:tabnext     : 다음 탭 이동
+:tabprevious : 이전 탭 이동
+:tabfirst    : 첫 탭으로 이동
+:tablast     : 마지막 탭으로 이동   
 
 ## Visual Mode
 
@@ -701,13 +726,6 @@ Plug `'junegunn/fzf', { 'do': { -> fzf#install() } }`
 
 }}}
 
-" Tabs  ========================================================= {{{
-
-
-## Tabs
-
-
-}}}
 
 " Fording  ========================================================= {{{
 
